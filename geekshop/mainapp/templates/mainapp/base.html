@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{% block title %}{{ title|title }}{% endblock %}</title>
+    {% block css %}
+		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+		<link rel="stylesheet" href="{% static '/fonts/fonts.css' %}">
+		<link rel="stylesheet" href="{% static '/fonts/icomoon/style_icomoon.css' %}">
+    {% endblock %}
+	{% block js %}
+       <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+       <script src="{% static 'js/bootstrap.min.js' %}"></script>
+   {% endblock %}
+</head>
+<body>
+	<div class="wrapper">
+		<div class="content-wrapper">
+            {% block menu %}
+
+            {% endblock %}
+            {% block content %}
+			{% endblock %}
+            {% block footer %}
+			<div class="footer">
+				<div class="container">
+					<div class="contact-us">
+						<p class="footer_header">Contact Us	</p>
+						<p class="footer_text">132A Bridge Road Richmond VIC<br>Australia.<br></p>
+						<br>
+						<p class="footer_text">Talk to us on 1300 132<br>info@interior.com</p>
+					</div>
+					<div class="useful_information">
+						<p class="footer_header">useful information</p>
+						<ul class="useful_information_menu">
+							<li class="useful_information_list"><a href="#" class="useful_information_link">Sales terms</a></li>
+							<li class="useful_information_list"><a href="#" class="useful_information_link">Architect accounts</a></li>
+							<li class="useful_information_list"><a href="#" class="useful_information_link">Customer care</a></li>
+							<li class="useful_information_list"><a href="#" class="useful_information_link">Careers</a></li>
+							<li class="useful_information_list"><a href="#" class="useful_information_link">Delivery</a></li>
+							<li class="useful_information_list"><a href="#" class="useful_information_link">Exchanges & returns</a></li>
+						</ul>
+					</div>
+					<div class="stay_in_touch">
+						<p class="footer_header">Let’s Stay in Touch!</p>
+						<p class="footer_text">Suscribe to know about our latest news, products and special offers just for suscribers.</p>
+						<form class="footer_form">
+		  					<input class="footer_input" type="email" placeholder="your email address">
+		  					<button class="letter-button" type="submit"><span class="icon-paper-plane"></span></button>
+						</form>
+					</div>
+					<div class="footer_bottom">
+						<div class="copyright">
+							<p class="copyright_text">© Copyright - INTERIOR {% now 'Y' %}. All Rights Reserved.</p>
+						</div>
+						<div class="social_items">
+							<a href="#"><span class="icon-facebook-with-circle"></span></a>
+							<a href="#"><span class="icon-twitter-with-circle"></span></a>
+							<a href="#"><span class="icon-google-with-circle"></span></a>
+							<a href="#"><span class="icon-pinterest-with-circle"></span></a>
+						</div>
+						<div class="terms">
+							<p class="terms_text">Terms & Conditions  /  Privacy policy & Cookies</p>
+						</div>
+					</div>
+				</div>
+			</div>
+            {% endblock %}
+		</div>
+	</div>
+</body>
+</html>

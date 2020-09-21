@@ -1,0 +1,21 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block menu %}
+	<div class="first-block">
+		<div class="header">
+			<a href="{% url 'main' %}" class="logo"><img src="{% static '/img/logo.png' %}" alt="logo"></a>
+			{% include 'mainapp/include/inc_main_menu.html' %}
+		</div>
+		<div class="h2-block">
+			<h2 class="header-h2">Contact Us</h2>
+		</div>
+	</div>
+{% endblock %}
+{% block content %}
+	<div class="contact">
+		{% include 'mainapp/include/inc_contact_us_inform.html' %}
+		{% include 'mainapp/include/inc_contact_us_inform.html' %}
+		{% include 'mainapp/include/inc_contact_us_inform.html' %}
+
+	</div>
+{% endblock %}

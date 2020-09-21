@@ -1,0 +1,60 @@
+{% load static %}
+<ul class="menu">
+    <li class="menu-list">
+        <a href="{% url 'main' %}"
+           class = "menu-link {% if request.resolver_match.url_name == 'main' %}menu-link-active{% else %} class = 'menu-link' {% endif %}">ГЛАВНАЯ</a>
+    </li>
+    <li class="menu-list"><a href="{% url 'mainapp:products' %}" {% if request.resolver_match.namespace == 'products' %} class = "menu-link menu-link-active" {% else %} class="menu-link" {% endif %}>ПРОДУКТЫ</a></li>
+    <li class="menu-list"><a href="{% url 'contact_us' %}" {% if request.resolver_match.url_name == 'contact_us' %} class="menu-link menu-link-active" {% else %} class="menu-link" {% endif %}>КОНТАКТЫ</a></li>
+
+    {% if user.is_authenticated %}
+    <li class="menu-list">
+       <div class="dropdown">
+           <a class="dropdown-toggle menu-link" href="" data-toggle="dropdown">
+               {{ user.first_name|default:'Пользователь' }}
+               <span class="caret"></span>
+           </a>
+           <ul class="dropdown-menu">
+               <li>
+                   <a href="{% url 'auth:edit' %}">
+                       профиль
+                   </a>
+               </li>
+               <li>
+                   <a href="{% url 'ordersapp:orders_list' %}">
+                       заказы
+                   </a>
+               </li>
+           </ul>
+       </div>
+   </li>
+  {% endif %}
+  {% if user.is_superuser %}
+    <li class="menu-list">
+      <a href="{% url 'admin:users' %}" class="menu-link">АДМИНКА</a>
+    </li>
+  {% endif %}
+    <li class="menu-list">
+        {% if user.is_authenticated %}
+          <a href="{% url 'auth:logout' %}" class="menu-link">ВЫЙТИ</a>
+        {% else %}
+          <a href="{% url 'auth:login' %}" class="menu-link">ВОЙТИ</a>
+        {% endif %}
+    </li>
+    <li class="menu-list search"><a href="#" class="menu-link"><img src="{% static '/img/search-img.png' %}" alt="search-img"></a></li>
+    <li class="menu-list">
+        <a href="{% url 'basket:view' %}">
+            <img src="{% static '/img/basket.png' %}">
+            <span>
+                {% if basket %}
+<!--                    {% for product, price in basket.0.product_item.items %}-->
+<!--                         {{ product }} : {{ price }}<br/>-->
+<!--                    {% endfor %}-->
+                    {{ basket.0.total_cost|floatformat:0 }} руб
+                    ({{ basket.0.total_quantity }} шт)
+                {% endif %}
+            </span>
+        </a>
+    </li>
+</ul>
+

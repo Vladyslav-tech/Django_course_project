@@ -1,0 +1,15 @@
+{% load static %}
+{% load my_tags %}
+
+<div class="tab_content">
+    {% for item in products %}
+    <div class="product">
+        <img src="{{ item.image|media_folder_products }}" alt="{{ item.short_desc }}" class="product-img">
+        <a href="{% url 'products:product_details' item.pk %}" class="poduct-content-hover">
+            <img src="{% static '/img/icon-hover-arrow.png' %}" alt="icon-hover-arrow" class="icon">
+            <p class="name-product">{{ item.name }}</p>
+            <p class="details">{{ item.description}}</p>
+        </a>
+    </div>
+    {% endfor %}
+</div>

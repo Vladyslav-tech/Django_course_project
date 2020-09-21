@@ -1,0 +1,71 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block menu %}
+	<div class="first-block">
+		<div class="header">
+			<a href="{% url 'main' %}" class="logo"><img src="{% static '/img/logo.png' %}" alt="logo"></a>
+			{% include 'mainapp/include/inc_main_menu.html' %}
+		</div>
+		<div class="h2-block">
+			<h2 class="header-h2">Our Products Range</h2>
+		</div>
+	</div>
+{% endblock %}
+{% block content %}
+	<div class="second-block">
+	<div class="tab-controll">
+		{% include 'mainapp/include/inc_submenu.html' %}
+	</div>
+		<div class="products-details">
+		<div class="picture-part">
+			<img src='/media/{{ hot_product.image }}' class="img_slide_main" alt="slide_1">
+			<img src='/media/{{ hot_product.image }}' class="img_slide" alt="slide_2">
+			<img src='/media/{{ hot_product.image }}' class="img_slide" alt="slide_3">
+			<img src='/media/{{ hot_product.image }}' class="img_slide" alt="slide_4">
+		</div>
+		<div class="datail-part">
+			<h2 class="datail-part-h2">{{ hot_product.name }}</h2>
+			<p class="hot_deal">Hot Deal</p>
+			<div class="price">$ <span class="price_decimal">{{ hot_product.price }}</span>руб.</div>
+			<a href='{% url "basket:add" hot_product.pk %}' class="promo-button">Order Us</a>
+			<div class="detail-part-description">
+				<p class="detail-part-text">{{ hot_product.description }}</p>
+			</div>
+		</div>
+	</div>
+	<div class="related-products">
+		<div class="trending-products">
+			<div class="title">
+				<h2 class="title-h2">Related Products</h2>
+				<a href="#" class="explore_all">explore all</a>
+			</div>
+			<div class="trending-products-list">
+				{% for product in same_products %}
+					<div class="trending-product"><img src='/media/{{ product.image }}'></div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	<div class="cycle-link">
+		<a href="#"><span class="icon-cycle"></span></a>
+	</div>
+	</div>
+	<div class="promo-product">
+		<div class="promo-content-1">
+			<div class="promo-text-content">
+				<p class="promo-exclusive">exclusive</p>
+			<h2 class="promo-h2">Fishnet Chair</h2>
+			<p class="promo-text">Seat and back with upholstery made of cold cure foam. Steel frame, available in matt</p>
+			<a href="#" class="promo-button">Order Us </a>
+			</div>
+		</div>
+		<div class="promo-content-2">
+			<div class="promo-text-content">
+				<p class="promo-exclusive">exclusive</p>
+				<h2 class="promo-h2">Fishnet Chair</h2>
+				<p class="promo-text">Seat and back with upholstery made of cold cure foam. Steel frame, available in matt</p>
+				<a href="#" class="promo-button">Order Us</a>
+			</div>
+		</div>
+	</div>
+{% endblock %}

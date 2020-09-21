@@ -1,0 +1,67 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block menu %}
+	<div class="first-block">
+		<div class="header">
+			<a href="{% url 'main' %}" class="logo"><img src="{% static '/img/logo.png' %}" alt="logo"></a>
+			{% include 'mainapp/include/inc_main_menu.html' %}
+		</div>
+		<div class="h2-block">
+			<h2 class="header-h2">Our Products Range</h2>
+		</div>
+	</div>
+{% endblock %}
+{% block content %}
+	<div class="second-block">
+	<div class="tab-controll">
+		{% include 'mainapp/include/inc_submenu.html' %}
+	</div>
+	<div class="featured_product">
+		<div class="tab_controll">
+			<ul class="featured-product-menu">
+				<h2 class="category_name">Категория: "{{ category.name|title }}"</h2>
+			</ul>
+			<a href="#" class="explore_all">explore all</a>
+		</div>
+		{% include 'mainapp/include/inc_tab_content.html' %}
+		<div class="paginator">
+          {% if products.has_previous %}
+            <a href="{% url 'products:page' category.pk products.previous_page_number %}">
+              <
+            </a>
+          {% endif %}
+          <span class="current">
+            страница {{ products.number }} из
+            {{ products.paginator.num_pages }}
+          </span>
+          {% if products.has_next %}
+            <a href="{% url 'products:page' category.pk products.next_page_number %}">
+              >
+            </a>
+          {% endif %}
+        </div>
+	</div>
+
+	<div class="cycle-link">
+		<a href="#"><span class="icon-cycle"></span></a>
+	</div>
+	</div>
+	<div class="promo-product">
+		<div class="promo-content-1">
+			<div class="promo-text-content">
+				<p class="promo-exclusive">exclusive</p>
+			<h2 class="promo-h2">Fishnet Chair</h2>
+			<p class="promo-text">Seat and back with upholstery made of cold cure foam. Steel frame, available in matt</p>
+			<a href="#" class="promo-button">Order Us </a>
+			</div>
+		</div>
+		<div class="promo-content-2">
+			<div class="promo-text-content">
+				<p class="promo-exclusive">exclusive</p>
+				<h2 class="promo-h2">Fishnet Chair</h2>
+				<p class="promo-text">Seat and back with upholstery made of cold cure foam. Steel frame, available in matt</p>
+				<a href="#" class="promo-button">Order Us</a>
+			</div>
+		</div>
+	</div>
+{% endblock %}

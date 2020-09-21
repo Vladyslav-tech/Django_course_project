@@ -1,0 +1,20 @@
+<ul class="tab-controll-menu">
+    <li class="tab-controll-list">
+        <a href="{% url 'products:category' 0 %}"
+           class="tab-controll-link {% if request.resolver_match.kwargs.pk == 0 %}active-link{% endif %}">
+            ВСЕ
+        </a>
+    </li>
+    {% for item in submenu %}
+    <li class="tab-controll-list">
+        <a href="{% url 'products:category' item.pk %}"
+        class = "tab-controll-link {% if request.resolver_match.kwargs.pk|add:'0' == item.pk %}active-link{% else %} class='tab-controll-link' {% endif %}">
+        {{ item.name|upper }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+
+
+
+
